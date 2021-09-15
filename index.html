@@ -328,18 +328,14 @@ tip.classList.remove('error');
 
 //解码ss
 function ssDecode(text){
-    asyncFromBase64(text,'utf8',function(data){
     var port,password,ip,method="";
-     
+    ip=text.split('@')[1].split('/')[0];
+    port=ip.split(':')[1];
+    ip=ip.split(':')[0];
+    asyncFromBase64(text,'utf8',function(data){
      var arr = data.split(':');
-
      method=arr[0];
-
-     ip=arr[1].split('@')[1];
      password=arr[1].split('@')[0];
-
-     port=arr[2];
-
            json.value = `
 {
   "server": "${ip}",
